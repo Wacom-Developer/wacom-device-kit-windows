@@ -37,7 +37,7 @@ Once the driver has installed, and you have rebooted your system, check your tab
 1. Attach a supported Wacom tablet. 
 2. Either open the Wacom Tablet Properties app, or the Wacom Desktop Center to determine if your tablet is recognized by the driver.
 3. Use a tablet pen to see if you can move the system cursor.
-4. If all of the above checks out, proceed to the next section to build the sample application.
+4. If all of the above checks out, proceed to the next section to build/run the sample application.
 
 ## Build/run the sample application
 To build the sample application:
