@@ -3,7 +3,7 @@
 ## Test Environment
 The Cadtest demo sample has been provided as a C++ application. To build this sample application, you will need the Windows 8.1 SDK and the v141 platform toolset (Visual Studio 2017).
 
-To run the application, make sure the Wacom Tablet Driver is installed and you have a supported Wacom tablet. Drivers and information on supported tablets can be found here: https://www.wacom.com/support/product-support/drivers
+To run the application, make sure the Wacom Tablet Driver is installed and you have a supported Wacom tablet. Drivers and information on supported tablets can be found here: https://www.wacom.com/support/product-support/drivers.
 
 ## Wintab SDK License:
 ```
@@ -30,10 +30,10 @@ In order to run a sample application, it is necessary to install a Wacom tablet 
 
 Once the driver has installed, and you have rebooted your system, check your tablet driver installation by doing the following:
 
-1. Attach a supported Wacom tablet
-1. Open the Wacom Tablet Properties application (Wacom Tablet → Wacom Tablet Properties from the Start Menu) to confirm your tablet is recognized
-1. Use the pen to verify functionality
-1. If all of the above checks out, proceed to build/run the sample application
+1. Attach a supported Wacom tablet.
+1. Open the Wacom Tablet Properties application (from the Start Menu, go to Wacom Tablet > Wacom Tablet Properties) to confirm your tablet is recognized.
+1. Use the pen to verify functionality.
+1. If all of the above checks out, proceed to the next section to build/run the sample application.
 
 ## Build/Run the Sample Application
 To build the sample application:
@@ -46,8 +46,7 @@ To build the sample application:
 1. Depending on the tablet type, your monitor configuration, and where you started Visual Studio, you may need to move the app window to an appropriate display. For example, if using a Cintiq Pro, you would need to move the app window to that tablet’s display.
 1. Once on the appropriate display, hovering your pen in the application window should show a vertical and a horizontal line which meet where your pen tip is.
 1. In order to use the ruler, do the following:
-	1. While the application is running, click Demo → Ruler Demo.
-	1. This opens a new dialog as well as opens a second digitizer context for each connected tablet.
+	1. While the application is running, click Demo > Ruler Demo. This opens a new dialog as well as opens a second digitizer context for each connected tablet.
 	1. Because this opens new digitizer contexts, you must place the pen into proximity of the tablet you wish to measure surface distance on before starting the measurement procedure.
 	1. Use your mouse to click on the opened dialog. This begins a Wintab polling loop which will be used to take the first and last points of contact from when you place the pen tip onto the tablet surface.
 	1. Press the pen to the surface, move it to a desired location, and lift the pen off the surface.
@@ -63,5 +62,5 @@ To build the sample application:
 
 
 ## Where to get help
-If you have questions about the sample application or any of the setup process, please visit our Support page at: https://developer.wacom.com/developer-dashboard/support
+If you have questions about the sample application or any of the setup process, please visit our support page at: https://developer.wacom.com/developer-dashboard/support
 
