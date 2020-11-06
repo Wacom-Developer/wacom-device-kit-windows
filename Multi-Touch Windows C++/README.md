@@ -19,7 +19,7 @@ To run this application, a Wacom tablet driver must be installed and a touch-ena
 The application uses installed driver modules, WacomMT.dll and Wintab32.dll, to communicate with the tablet driver. If the driver is not installed or is not communicating, the program will display an appropriate warning.
 
 Here is a simplified overview of the major components:  
-![Overview of major components](https://github.com/cbwinchild-devdocs/icbt-windows-sample-code-docs/blob/master/Multi-Touch%20Windows%20C%2B%2B/Media/sc-rm-mtc-appOverview.png)
+![Overview of major components](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Multi-Touch%20Windows%20C%2B%2B/Media/sc-rm-mtc-appOverview.png)
 
 
 You can download the sample code and view the inline comments to find out detailed information about the sample code itself.
