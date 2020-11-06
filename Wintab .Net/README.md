@@ -18,7 +18,7 @@ The applications use an installed driver module Wintab32.dll and the project-bui
 
 The following illustrates a simplified overview of the major Wintab-supporting components:
 
-![Application Details](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/Media/sc-wdn-rm-ad.png)
+![simplified overview of the major Wintab-supporting components](./Media/sc-wdn-rm-ad.png)
 
 You can download the sample code and view the inline comments to find out detailed information about the sample code itself.
 

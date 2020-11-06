@@ -53,7 +53,7 @@ To build the sample application:
 	c. The "ESC" key will clear the windows of all input.  
 	d. The "Options" menu item allows you to control how touch is handled by the application and get information about attached devices.  
 	
-![Wacom Multi-Touch Scribble Pen Demo](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Multi-Touch%20Windows%20C%2B%2B/Media/sc-gs-mtc-scribblePen.png)
+![Wacom Multi-Touch Scribble Pen Demo](./Media/sc-gs-mtc-scribblePen.png)
 ## See Also  
 [Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-basics) - Details on how to configure and write Multi-Touch applications
 

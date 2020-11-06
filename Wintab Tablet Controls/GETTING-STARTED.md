@@ -45,7 +45,7 @@ To build the sample application:
 5. Controls for all tablets currently and previously attached will appear. To only show attached tablets, reset settings from the Wacom Desktop Center Backup settings section.  
 
 
-![Tablet-Controls](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20Tablet%20Controls/Media/sc-gs-tabletcontrols.png)
+![Tablet controls](./Media/sc-gs-tabletcontrols.png)
 
 ## See Also
 [Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - Details on how to configure and write Wintab applications.  

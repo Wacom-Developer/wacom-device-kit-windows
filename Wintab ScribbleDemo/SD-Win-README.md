@@ -18,7 +18,7 @@ The application uses an installed driver module, Wintab32.dll, to communicate wi
 
 The following image illustrates a simplified overview of the major Wintab-supporting components:  
 
-![scribbledemo-overview](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20ScribbleDemo/Media/sc-rm-sd-suppcom-overview.png)
+![scribble demo overview](./Media/sc-rm-sd-suppcom-overview.png)
 
 You can download the sample code and view the inline comments to find out detailed information about the sample code itself.
 
