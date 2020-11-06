@@ -45,7 +45,7 @@ To build the sample application:
 	* WacomMTDN: This project builds the WacomMTDN.dll which is used to interface with native Wacom Multi-Touch library (installed with the Wacom Tablet Driver).
 	* WacomMTDN_TestApp: This is a test application which uses WacomMTDN.dll  
 	
-1. This sample code project comes with the WinTabDN.dll, which brings in WinTab pen support into C# applications. You can read more about C# (.NET) support on the Wintab Basics page, in the [Programming framework, SDK, languages](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics#prog-framewk-sdk-lang) section, and review the sample code which builds this dll in LINK [Windows .NET - Getting Started ](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/GETTING-STARTED.md).
+1. This sample code project comes with the WinTabDN.dll, which brings in WinTab pen support into C# applications. You can read more about C# (.NET) support on the Wintab Basics page, in the [Programming framework, SDK, languages](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics#prog-framewk-sdk-lang) section, and review the sample code which builds this dll in [Windows .NET - Getting Started](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/GETTING-STARTED.md).
 1. From the top menu, select Build > Build Solution.
 1. Be sure WacomMTDN_TestApp is set as the default start-up project.
 1. Once built, start the solution from Visual Studio Local Windows Debugger.

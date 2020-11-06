@@ -57,8 +57,6 @@ This application is an example of how to capture user interactions with tablet c
 
 To only show attached tablets, reset settings from the Wacom Desktop Center Backup settings section.
 
-IMAGE  
-LINK  
 ![PenTestApp](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/Media/sc-wdn-gs-xta.png)
 
 
@@ -73,8 +71,6 @@ Other features include the following buttons:
 * *Test QDP* – Opens a dialog to display context, position, and pressure data for stylus input from the tablet.
 * *Tablet to Sys Mapping* – When pressed while testing, gives tablet mapping information.
 
-IMAGE
-LINK  
 ![PenTestApp](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/Media/sc-wdn-gs-pta.png)
 
 ## WintabDN

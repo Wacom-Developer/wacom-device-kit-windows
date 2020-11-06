@@ -44,8 +44,6 @@ To build the sample application:
 4. As the app starts, there should be no warnings. If you do see warnings, be sure the driver is running with the attached, supported, tablet as described above.
 5. Controls for all tablets currently and previously attached will appear. To only show attached tablets, reset settings from the Wacom Desktop Center Backup settings section.  
 
-LINK
-IMAGE  
 
 ![Tablet-Controls](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20Tablet%20Controls/Media/sc-gs-tabletcontrols.png)
 

@@ -17,7 +17,7 @@ To run these applications, a Wacom tablet driver must be installed and a support
 The applications use an installed driver module Wintab32.dll and the project-built WintabDN.dll to communicate with the tablet driver. If the driver is not installed, is not communicating, or there is no supported Wacom tablet attached or in the preferences, then the program will display an appropriate warning.
 
 The following illustrates a simplified overview of the major Wintab-supporting components:
-LINK
+
 ![Application Details](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/Media/sc-wdn-rm-ad.png)
 
 You can download the sample code and view the inline comments to find out detailed information about the sample code itself.
