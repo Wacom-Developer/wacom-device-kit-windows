@@ -47,7 +47,7 @@ To build the sample application:
 LINK
 IMAGE  
 
-![Tablet-Controls](https://github.com/cbwinchild-devdocs/icbt-windows-sample-code-docs/blob/master/Wintab%20Tablet%20Controls/Media/sc-gs-tabletcontrols.png)
+![Tablet-Controls](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20Tablet%20Controls/Media/sc-gs-tabletcontrols.png)
 
 ## See Also
 [Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - Details on how to configure and write Wintab applications.  

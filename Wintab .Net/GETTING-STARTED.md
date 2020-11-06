@@ -59,7 +59,7 @@ To only show attached tablets, reset settings from the Wacom Desktop Center Back
 
 IMAGE  
 LINK  
-![PenTestApp](https://github.com/cbwinchild-devdocs/icbt-windows-sample-code-docs/blob/master/Wintab%20.Net/Media/sc-wdn-gs-xta.png)
+![PenTestApp](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/Media/sc-wdn-gs-xta.png)
 
 
 ## PenTestApp
@@ -75,7 +75,7 @@ Other features include the following buttons:
 
 IMAGE
 LINK  
-![PenTestApp](https://github.com/cbwinchild-devdocs/icbt-windows-sample-code-docs/blob/master/Wintab%20.Net/Media/sc-wdn-gs-pta.png)
+![PenTestApp](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/Media/sc-wdn-gs-pta.png)
 
 ## WintabDN
 Builds the WintabDN.dll (Wintab .NET) used to interface with Wintab.
