@@ -60,7 +60,7 @@ To build the sample application:
 	
 1. The options on the right allow you to control how touch is handled by the application and get information about attached devices. Information on what these different options do can be found on the Wacom Feel™  Multi-Touch Basics page, in the [Overview of a Multi-Touch Application section](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-basics#multi-touch-app-overview).  
 	
-![Wacom Multi-Touch dot net Test Application](./Media/sc-gs-MTC%23.NET-demo.png)
+![Wacom Multi-Touch dot net Test Application](./Media/sc-gs-MTCDN-demo.png)
 
 ## See Also
 [Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-basics) - Details on how to configure and write Multi-Touch applications
