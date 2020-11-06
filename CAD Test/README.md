@@ -20,7 +20,7 @@ The application uses an installed driver module, Wintab32.dll, to communicate wi
 
 The following illustrates a simplified overview of the major Wintab-supporting components:
 
-![Overview of major Wintab-supporting components](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/CAD%20Test/Media/sc-rm-cad-wintab-overview.png)
+![Overview of major Wintab-supporting components](./Media/sc-rm-cad-wintab-overview.png)
 
 
 You can download the sample code and view the inline comments to find out detailed information about the sample code itself.
