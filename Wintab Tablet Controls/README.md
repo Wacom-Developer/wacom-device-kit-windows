@@ -18,8 +18,7 @@ The application uses an installed driver module, Wintab32.dll, to communicate wi
 
 Here is a simplified overview of the major Wintab-supporting components:  
 
-IMAGE  
-![wintab-overview](https://github.com/cbwinchild-devdocs/icbt-windows-sample-code-docs/blob/master/Wintab%20Tablet%20Controls/Media/sc-rm-wintab-overview.png)
+![wintab-overview](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20Tablet%20Controls/Media/sc-rm-wintab-overview.png)
 
 You can download the sample code and view the inline comments to find out detailed information about the sample code itself.
 
