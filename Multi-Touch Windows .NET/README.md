@@ -17,7 +17,7 @@ The application uses a managed C# wrapper library (WacomMTDN.dll) to communicate
 
 The following image illustrates a simplified overview of the major  components:
 
-![simplified overview image of the major components](./Media/sc-rm-MTCDN-appOverview)
+![simplified overview image of the major components](./Media/sc-rm-MTCDN-appOverview.png)
 
 
 You can download the sample code and view the inline comments to find out detailed information about the sample code itself.
