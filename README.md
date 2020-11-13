@@ -1,6 +1,6 @@
 # Readme
 
-The following table describes each sample code example in this repository. 
+This repository contains the following sample code:
 
 |Sample Code				|Description			|
 |---						|---					|
