@@ -54,7 +54,7 @@ Stylus in proximity, leaning steeply toward lower left corner:
 Stylus in contact, nearly vertical, leaning toward upper right corner:  
 ![](./Media/sc-gs-tt-stylusContact.png)
 
-NOTE: To only reflect the currently attached Wacom device, clear user preferences.
+> NOTE: To only reflect the currently attached Wacom device, clear user preferences.
 
 ## See Also
 

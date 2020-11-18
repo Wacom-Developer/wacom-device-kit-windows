@@ -53,7 +53,7 @@ Max pressure circle scaled to shorter of height or width of application window:
 ![](./Media/sc-gs-pt-maxPress.png)
 
 
->NOTE: To only reflect the currently attached Wacom device, clear user preferences.
+> NOTE: To only reflect the currently attached Wacom device, clear user preferences.
 
 ## See Also
 [Wintab - Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - How to configure and write Wintab applications  
