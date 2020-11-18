@@ -28,14 +28,14 @@ THE SOFTWARE.
 ## Install the Wacom tablet driver and verify tablet operation
 In order to run a sample application, it is necessary to install a Wacom tablet driver, which installs the necessary runtime components that support Wintab. The latest driver can be obtained from the Wacom driver support web page at: https://www.wacom.com/support/product-support/drivers
 
-Once the driver has been installed, and you have rebooted your system, check your tablet driver installation by doing the following:
+### Once the driver has been installed, and you have rebooted your system, check your tablet driver installation by doing the following:
 
 1. Attach a supported Wacom tablet
 2. Open the Wacom Tablet Properties application (Wacom Tablet → Wacom Tablet Properties from the Start Menu) to confirm your tablet is recognized
 3. Use stylus on tablet to verify functionality
 4. If all of the above checks out, proceed to build/run the sample application
 
-## To build the sample application:
+### To build the sample application:
 1. Open the PressureTest.sln file in Visual Studio. The demo includes all SDK header files needed to build with. Other SDK components necessary to run the demo are installed with the tablet driver
 1. From the top menu, select Build → Build Solution
 1. Once built, start the solution from Visual Studio Local Windows Debugger
@@ -53,7 +53,8 @@ Max pressure circle scaled to shorter of height or width of application window:
 ![](./Media/sc-gs-pt-maxPress.png)
 
 
-NOTE: To only reflect the currently attached Wacom device, clear user preferences.
+>NOTE: To only reflect the currently attached Wacom device, clear user preferences.
+
 ## See Also
 [Wintab - Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - How to configure and write Wintab applications  
 
