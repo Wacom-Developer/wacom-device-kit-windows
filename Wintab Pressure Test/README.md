@@ -17,6 +17,8 @@ The application uses an installed driver module, Wintab32.dll, to communicate wi
 The following illustrates a simplified overview of the major Wintab-supporting components:
 ![](./Media/sc-gs-pt-wintabOverview.png)
 
+You can view the sample code's inline comments for detailed information about the sample code itself.
+
 
 ## See Also
 [Wintab - Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - How to configure and write Wintab applications  
