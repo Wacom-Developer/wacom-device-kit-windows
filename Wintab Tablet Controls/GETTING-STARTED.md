@@ -48,11 +48,11 @@ To build the sample application:
 ![Tablet controls](./Media/sc-gs-tabletcontrols.png)
 
 ## See Also
-[Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - Details on how to configure and write Wintab applications.  
+[Wintab - Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - How to configure and write Wintab applications  
 
-[Reference](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-reference) - Complete API details 
+[Wintab - Reference](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-reference) - Complete API details 
 
-[FAQs](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-faqs) - Wintab programming tips  
+[Wintab - FAQs](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-faqs) - Wintab programming tips  
 
 ## Where to get help
 If you have questions about the sample application or any of the setup processes, please visit our Developer Support page at: https://developer.wacom.com/developer-dashboard/support.

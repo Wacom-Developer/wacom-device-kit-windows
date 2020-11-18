@@ -45,20 +45,20 @@ To build the sample application:
 1. As the app starts, there should be no warnings. If you do see warnings, be sure the driver is running with the attached, supported, tablet as described above
 1. Behavior will depend on current and previously attached tablets. To only show attached tablets, reset settings from the Wacom Desktop Center Backup settings section
 
-No stylus in proximity
+No stylus in proximity:  
 ![](./Media/sc-gs-tt-noStylus.png)
 
-Stylus in proximity, leaning steeply toward lower left corner
+Stylus in proximity, leaning steeply toward lower left corner:  
 ![](./Media/sc-gs-tt-stylusProx.png)
 
-Stylus in contact, nearly vertical, leaning toward upper right corner
+Stylus in contact, nearly vertical, leaning toward upper right corner:  
 ![](./Media/sc-gs-tt-stylusContact.png)
 
 NOTE: To only reflect the currently attached Wacom device, clear user preferences.
 
 ## See Also
 
-[Wintab Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-overview) - Details on how to configure and write Wintab applications.
+[Wintab Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-overview) - How to configure and write Wintab applications
 
 [Wintab Reference](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-reference) - Complete API details
 
