@@ -3,7 +3,7 @@
 ## Test Environment
 The Wintab demo samples have been provided as C++ applications. To build this sample application, you will need Windows 7 or above with Visual Studio 2017 or above.
 
-To test the application, use a Wacom tablet supported by the latest driver.
+To run the application, make sure the Wacom Tablet Driver is installed and you have a supported Wacom tablet. Drivers and information on supported tablets can be found here: https://www.wacom.com/support/product-support/drivers.
 
 ## Wintab SDK License
 ```
@@ -26,12 +26,12 @@ THE SOFTWARE.
 ```
 
 ## Install the Wacom tablet driver and verify tablet operation
-In order to run a sample application, it is necessary to install a Wacom tablet driver, which installs the necessary runtime components that support Wintab. The latest driver can be obtained from the Wacom driver support web page at: https://www.wacom.com/support/product-support/drivers
+In order to run a sample application, it is necessary to install a Wacom tablet driver, which installs the necessary runtime components that support Wintab. The driver can be found at: https://www.wacom.com/support/product-support/drivers.
 
 Once the driver has been installed, and you have rebooted your system, check your tablet driver installation by doing the following:
 
 1. Attach a supported Wacom tablet
-1. Open the Wacom Tablet Properties application (Wacom Tablet → Wacom Tablet Properties from the Start Menu) to confirm your tablet is recognized
+1. Open the Wacom Tablet Properties application (from the Start Menu, go to Wacom Tablet > Wacom Tablet Properties) to confirm your tablet is recognized
 1. Use stylus on tablet to verify functionality
 1. If all of the above checks out, proceed to the next section to build/run the sample application.
 

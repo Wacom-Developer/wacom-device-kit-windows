@@ -14,7 +14,8 @@ To test the application, a Wacom tablet driver must be installed and a supported
 ## Application Details
 The application uses an installed driver module, Wintab32.dll, to communicate with the tablet driver.  If the driver is not installed, is not communicating, or there is no supported Wacom tablet attached or in the preferences, then the program will display an appropriate warning.
 
-The following illustrates a simplified overview of the major Wintab-supporting components:
+The following illustrates a simplified overview of the major Wintab-supporting components:  
+
 ![](./Media/sc-gs-pt-wintabOverview.png)
 
 You can view the sample code's inline comments for detailed information about the sample code itself.

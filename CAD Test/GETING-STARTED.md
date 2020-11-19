@@ -26,7 +26,7 @@ THE SOFTWARE.
 ```
 
 ## Install the Wacom Tablet Driver and Verify Tablet Operation
-In order to run a sample application, it is necessary to install a Wacom tablet driver, which installs the necessary runtime components that support Wintab. The driver can be found at: https://www.wacom.com/support/product-support/drivers
+In order to run a sample application, it is necessary to install a Wacom tablet driver, which installs the necessary runtime components that support Wintab. The driver can be found at: https://www.wacom.com/support/product-support/drivers.
 
 Once the driver has installed, and you have rebooted your system, check your tablet driver installation by doing the following:
 

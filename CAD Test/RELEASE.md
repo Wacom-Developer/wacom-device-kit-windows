@@ -1,10 +1,9 @@
 # Release
 
 ## Version
-This app is currently at version 3.0.
+This app is currently at version 3.0
 
 ## History
-CadTest
 
 * Release 3.0 22 October 2020
 	* Updated for release to Github

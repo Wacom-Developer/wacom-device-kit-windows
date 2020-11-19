@@ -13,7 +13,7 @@ This sample shows how an application can use Wintab to:
 * Receive pen data as raw tablet counts.
 * Use a ruler tool (Demo > Ruler Demo) to poll for Wintab data and measure the physical tablet surface distance between two points.
 
-In order to run a sample application, it is necessary to install a Wacom tablet driver, which installs the necessary runtime components that support Wintab. The driver can be found at: https://www.wacom.com/support/product-support/drivers
+In order to run a sample application, it is necessary to install a Wacom tablet driver, which installs the necessary runtime components that support Wintab. The driver can be found at: https://www.wacom.com/support/product-support/drivers.
 
 ## Application Details
 The application uses an installed driver module, Wintab32.dll, to communicate with the tablet driver.  If the driver is not installed, is not communicating, or there is no supported Wacom tablet attached, then the program will display an appropriate warning.
