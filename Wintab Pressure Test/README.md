@@ -5,9 +5,9 @@ This is a C++ application that uses the Wintab API to receive position and press
 
 This demo shows how an application can use Wintab to:
 
-* Connect to Wintab-enabled Wacom tablets
-* Open an application-private Wintab context and sets up handlers for basic events
-* Receive message notification when data is available, as well as notification of other tablet events (such as when a pen comes into proximity, etc.)
+* Connect to Wintab-enabled Wacom tablets.
+* Open an application-private Wintab context and set up handlers for basic events.
+* Receive message notification when data is available, as well as notification of other tablet events (such as when a pen comes into proximity, etc.).
 
 To test the application, a Wacom tablet driver must be installed and a supported Wacom tablet must be attached. All Wacom tablets supported by the Wacom driver are supported by this API. Get the driver that supports your device at: https://www.wacom.com/support/product-support/drivers.
 

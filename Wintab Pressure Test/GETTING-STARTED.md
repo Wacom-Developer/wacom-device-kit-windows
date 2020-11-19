@@ -28,18 +28,18 @@ THE SOFTWARE.
 ## Install the Wacom tablet driver and verify tablet operation
 In order to run a sample application, it is necessary to install a Wacom tablet driver, which installs the necessary runtime components that support Wintab. The latest driver can be obtained from the Wacom driver support web page at: https://www.wacom.com/support/product-support/drivers
 
-### Once the driver has been installed, and you have rebooted your system, check your tablet driver installation by doing the following:
+Once the driver has been installed, and you have rebooted your system, check your tablet driver installation by doing the following:
 
-1. Attach a supported Wacom tablet
-2. Open the Wacom Tablet Properties application (Wacom Tablet → Wacom Tablet Properties from the Start Menu) to confirm your tablet is recognized
-3. Use stylus on tablet to verify functionality
-4. If all of the above checks out, proceed to build/run the sample application
+1. Attach a supported Wacom tablet.
+2. Open the Wacom Tablet Properties application (Wacom Tablet > Wacom Tablet Properties from the Start Menu) to confirm your tablet is recognized.
+3. Use the stylus on the tablet to verify functionality.
+4. If all of the above checks out, proceed to the next section to build/run the sample application.
 
-### To build the sample application:
-1. Open the PressureTest.sln file in Visual Studio. The demo includes all SDK header files needed to build with. Other SDK components necessary to run the demo are installed with the tablet driver
-1. From the top menu, select Build → Build Solution
-1. Once built, start the solution from Visual Studio Local Windows Debugger
-1. As the app starts, there should be no warnings. If you do see warnings, be sure the driver is running with the attached, supported, tablet as described above
+## Build/Run the Sample Application  
+1. Open the PressureTest.sln file in Visual Studio. The demo includes all SDK header files needed to build with. Other SDK components necessary to run the demo are installed with the tablet driver.
+1. From the top menu, select Build > Build Solution.
+1. Once built, start the solution from Visual Studio Local Windows Debugger.
+1. As the app starts, there should be no warnings. If you do see warnings, be sure the driver is running with the attached, supported, tablet as described above.
 1. Behavior will depend on current and previously attached tablets. To only show attached tablets, reset settings from the Wacom Desktop Center Backup settings section.
 
 Pen in proximity, not in contact with tablet, showing position on application client area:  

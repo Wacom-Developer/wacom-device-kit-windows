@@ -34,7 +34,7 @@ Once the driver has installed and you have rebooted your system, check your tabl
 1. Attach a supported Wacom tablet.
 1. Open the Wacom Tablet Properties application (from the Start menu, go to Wacom Tablet >  Wacom Tablet Properties) to confirm your tablet is recognized.
 1. Use tablet Pen, ExpressKeys, Touch Ring, and/or Touch Strips to verify functionality.
-1. If all of the above checks out, proceed to the next section to build/run  the sample application.
+1. If all of the above checks out, proceed to the next section to build/run the sample application.
 
 
 ## Build/run the sample applications
