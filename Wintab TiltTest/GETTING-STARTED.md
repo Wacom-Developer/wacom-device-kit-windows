@@ -3,7 +3,7 @@
 ## Test Environment
 The Wintab demo samples have been provided as C++ applications. To build this sample application, you will need Windows 7 or above with Visual Studio 2017 or above.
 
-To run the application, make sure the Wacom Tablet Driver is installed and you have a supported Wacom tablet. Drivers and information on supported tablets can be found here: https://www.wacom.com/support/product-support/drivers.
+To test the application, a Wacom tablet driver must be installed and a supported Wacom tablet must be attached. All Wacom tablets supported by the Wacom driver are supported by this API. Get the driver that supports your device at: https://www.wacom.com/support/product-support/drivers.
 
 ## Wintab SDK License
 ```
@@ -30,20 +30,19 @@ In order to run a sample application, it is necessary to install a Wacom tablet 
 
 Once the driver has been installed, and you have rebooted your system, check your tablet driver installation by doing the following:
 
-1. Attach a supported Wacom tablet
-1. Open the Wacom Tablet Properties application (from the Start Menu, go to Wacom Tablet > Wacom Tablet Properties) to confirm your tablet is recognized
-1. Use stylus on tablet to verify functionality
+1. Attach a supported Wacom tablet.
+1. Open the Wacom Tablet Properties application (from the Start Menu, go to Wacom Tablet > Wacom Tablet Properties) to confirm your tablet is recognized.
+1. Use the stylus on tablet to verify functionality.
 1. If all of the above checks out, proceed to the next section to build/run the sample application.
 
 
 ## Build/run the sample application
-To build the sample application:
 
-1. Open the TiltTest.sln file in Visual Studio. The demo includes all SDK header files needed to build with. Other SDK components necessary to run the demo are installed with the tablet driver
-1. From the top menu, select Build > Build Solution
-1. Once built, start the solution from Visual Studio Local Windows Debugger
-1. As the app starts, there should be no warnings. If you do see warnings, be sure the driver is running with the attached, supported, tablet as described above
-1. Behavior will depend on current and previously attached tablets. To only show attached tablets, reset settings from the Wacom Desktop Center Backup settings section
+1. Open the TiltTest.sln file in Visual Studio. The demo includes all SDK header files needed to build with. Other SDK components necessary to run the demo are installed with the tablet driver.
+1. From the top menu, select Build > Build Solution.
+1. Once built, start the solution from Visual Studio Local Windows Debugger.
+1. As the app starts, there should be no warnings. If you do see warnings, be sure the driver is running with the attached, supported, tablet as described above.
+1. Behavior will depend on current and previously attached tablets. To only show attached tablets, reset settings from the Wacom Desktop Center Backup settings section.
 
 No stylus in proximity:  
 ![](./Media/sc-gs-tt-noStylus.png)
