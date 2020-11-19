@@ -37,7 +37,6 @@ Once the driver has installed, and you have rebooted your system, check your tab
 4. If all of the above checks out, proceed to the next section to build/run the sample application.
 
 ## Build/run the sample application
-To build the sample application:
 
 1, Open the WacomMTDN.sln file in Visual Studio. The demo includes all SDK header files needed to build and communicate with the Multi-Touch API. Other SDK components necessary to run the demo are installed with the tablet driver.  
 

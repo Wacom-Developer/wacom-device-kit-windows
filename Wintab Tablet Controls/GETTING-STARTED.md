@@ -36,7 +36,6 @@ Once the driver has installed, and you have rebooted your system, check your tab
 
 
 ## Build/run the sample application
-To build the sample application:
 
 1. Open the TabletControlsSample.sln file in Visual Studio. The demo includes all SDK header files needed to build with. Other SDK components necessary to run the demo are installed with the tablet driver.
 2. From the top menu, select Build > Build Solution.

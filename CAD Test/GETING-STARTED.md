@@ -36,7 +36,6 @@ Once the driver has installed, and you have rebooted your system, check your tab
 1. If all of the above checks out, proceed to the next section to build/run the sample application.
 
 ## Build/Run the Sample Application
-To build the sample application:
 
 1. Open the CadTest.sln file in Visual Studio. The demo includes all the SDK header files needed for building. Other SDK components necessary to run the demo are installed with the tablet driver.
 1. Select CPU type Win32.

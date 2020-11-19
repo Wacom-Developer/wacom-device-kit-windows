@@ -38,7 +38,6 @@ Once the driver has installed and you have rebooted your system, check your tabl
 
 
 ## Build/run the sample applications
-To build the sample applications:
 
 1. Open the WintabDN.sln file in Visual Studio. The demo includes all SDK header files needed to build with. Other SDK components necessary to run the demo are installed with the tablet driver.
 1. There are three projects in the solution:  
