@@ -3,7 +3,7 @@
 ## Introduction
 This is a C++ application that uses the WinTab API to receive pen data from multiple attached Wacom tablets and allows the user to measure physical distance on the tablet surface. Specifically, this application measures how many inches or centimeters the Wacom stylus has moved across the tablet surface.
 
-Unlike the [ScribbleDemo](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20ScribbleDemo/SD-Win-README.md), which by default opens a System context, CadTest uses Digitizer contexts the attached tablets. System contexts are used to report Wintab packets as screen coordinates, whereas Digitizer contexts are used to report Wintab packets against the active tablet area.
+Unlike the [ScribbleDemo](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20ScribbleDemo/SD-Win-README.md), which by default opens a System context, CadTest uses Digitizer contexts for the attached tablets. System contexts are used to report Wintab packets as screen coordinates, whereas Digitizer contexts are used to report Wintab packets against the active tablet area.
 
 This sample shows how an application can use Wintab to:
 
