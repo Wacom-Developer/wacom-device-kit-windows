@@ -1,0 +1,62 @@
+/*----------------------------------------------------------------------------
+	NAME
+		ScribbleDemo.rc
+
+	PURPOSE
+		Application resource defines.
+
+	COPYRIGHT
+		This file is Copyright (c) Wacom Company, Ltd. 2020 All Rights Reserved
+		with portions copyright 1991-1998 by LCS/Telegraphics.
+
+		The text and information contained in this file may be freely used,
+		copied, or distributed without compensation or licensing restrictions.
+---------------------------------------------------------------------------- */
+#include <windows.h>
+#include "ScribbleDemo.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+SCRIBBLEDEMOMENU MENUEX
+BEGIN
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ScribbleDemo...",           IDM_ABOUT, MFT_STRING, MFS_ENABLED
+    END
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "&Clear Canvas (esc)",              IDM_CLEAR, MFT_STRING, MFS_ENABLED
+        MENUITEM "&Draw Lines",                      IDM_LINES, MFT_STRING, MFS_CHECKED
+        MENUITEM "&Pressure",                        IDM_PRESSURE, MFT_STRING, MFS_CHECKED
+        MENUITEM "Offset &Mode",                     IDM_OFFSETMODE, MFT_STRING, MFS_UNCHECKED
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ABOUTBOX DIALOGEX 22, 17, 161, 75
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About PressureTest"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CTEXT           "LCS/Telegraphics",-1,0,3,161,8
+    CTEXT           "Modified by WACOM Technologies, Inc.",-1,0,12,161,8
+    CTEXT           "PressureTest Application",-1,0,28,161,8
+    CTEXT           "Version 2.0.1",-1,0,41,161,8
+    DEFPUSHBUTTON   "OK",IDOK,65,57,32,14,WS_GROUP
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "ScribbleDemo.rc2"
+
+/////////////////////////////////////////////////////////////////////////////

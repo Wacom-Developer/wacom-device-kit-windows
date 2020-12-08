@@ -1,0 +1,71 @@
+/*----------------------------------------------------------------------------
+
+	NAME
+		Cadtest.rc
+
+	PURPOSE
+		Resources for cadtest demo.
+
+   COPYRIGHT
+      This file is Copyright (c) Wacom Company, Ltd. 2020 All Rights Reserved
+      with portions copyright 1998 by LCS/Telegraphics.
+
+      The text and information contained in this file may be freely used,
+      copied, or distributed without compensation or licensing restrictions.
+
+---------------------------------------------------------------------------- */
+#include <windows.h>
+#include "cadtest.h"
+#include "Rule.h"
+
+CadtestMenu MENU
+BEGIN
+    POPUP        "&Edit"
+    BEGIN
+        MENUITEM "&Configure Tablet Context...", IDM_CONFIG
+		MENUITEM "&Persistent Context",			 IDM_PERSIST
+    END
+	POPUP		 "&Demo"
+	BEGIN
+		MENUITEM "&Ruler Demo",	IDM_RULER_DEMO
+	END
+    POPUP        "&Help"
+    BEGIN
+        MENUITEM "&About Cadtest...", IDM_ABOUT
+    END
+END
+
+AboutBox DIALOG 22, 17, 144, 75
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About Cadtest"
+BEGIN
+    CTEXT "LCS/Telegraphics"     -1,       0,  5, 144,  8
+    CTEXT "Modified by WACOM Technologies, Inc."	-1,		0,	14	144,	8
+    CTEXT "Cadtest Demo Application"   -1,       0, 25, 144,  8
+    CTEXT "Version 3.0"           -1,       0, 34, 144,  8
+    DEFPUSHBUTTON "OK"          IDOK,      53, 59,  32, 14,      WS_GROUP
+END
+
+RuleDemoDlg DIALOG 16, 65, 160, 100
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "Rule"
+FONT 8, "Helv"
+BEGIN
+    LTEXT           "Horizontal", 101, 5, 66, 44, 8
+    LTEXT           "Vertical", 102, 5, 74, 44, 8
+    LTEXT           "Diagonal", 103, 5, 82, 44, 8
+    LTEXT           "Inches", 104, 53, 54, 24, 8
+    LTEXT           "Centimeters", 105, 83, 54, 42, 8
+    LTEXT           "Place pen in tablet proximity.\nThen mouse click here to begin.", ID_CLICK, 8, 22, 138, 16
+    LTEXT           "Hold down any pen button to start.", ID_PRESS, 8, 30, 138, 8, 
+                    NOT WS_VISIBLE
+    LTEXT           "Release the button to finish.", ID_RELEASE, 8, 38, 138, 
+                    8, NOT WS_VISIBLE
+    LTEXT           "0", ID_HI, 53, 66, 24, 8
+    LTEXT           "0", ID_VI, 53, 74, 24, 8
+    LTEXT           "0", ID_DI, 53, 82, 24, 8
+    LTEXT           "0", ID_HC, 83, 66, 42, 8
+    LTEXT           "0", ID_VC, 83, 74, 42, 8
+    LTEXT           "0", ID_DC, 83, 82, 42, 8
+END
+
