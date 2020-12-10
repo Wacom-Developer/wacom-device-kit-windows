@@ -23,11 +23,11 @@ The following image illustrates a simplified overview of the major  components:
 You can download the sample code and view the inline comments to find out detailed information about the sample code itself.
 
 ## See Also
-[Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-basics) - Details on how to configure and write Multi-Touch applications
+[Basics](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wfmt-basics) - Details on how to configure and write Multi-Touch applications
 
-[Reference](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-reference) - Complete Multi-Touch API details
+[Reference](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wfmt-reference) - Complete Multi-Touch API details
 
-[FAQs](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-faqs) - Multi-Touch programming tips
+[FAQs](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wfmt-faqs) - Multi-Touch programming tips
 
 ## License
 This sample code is licensed under the MIT License: https://choosealicense.com/licenses/mit/.

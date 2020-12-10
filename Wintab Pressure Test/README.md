@@ -22,11 +22,11 @@ You can view the sample code's inline comments for detailed information about th
 
 
 ## See Also
-[Wintab - Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - How to configure and write Wintab applications  
+[Wintab - Basics](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-basics) - How to configure and write Wintab applications  
 
-[Wintab - Reference](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-reference) - Complete API details 
+[Wintab - Reference](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-reference) - Complete API details 
 
-[Wintab - FAQs](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-faqs) - Wintab programming tips  
+[Wintab - FAQs](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-faqs) - Wintab programming tips  
 
 
 ## Where To Get Help

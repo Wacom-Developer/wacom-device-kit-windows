@@ -44,7 +44,7 @@ Once the driver has installed, and you have rebooted your system, check your tab
 	* WacomMTDN: This project builds the WacomMTDN.dll which is used to interface with native Wacom Multi-Touch library (installed with the Wacom Tablet Driver).
 	* WacomMTDN_TestApp: This is a test application which uses WacomMTDN.dll  
 	
-1. This sample code project comes with the WinTabDN.dll, which brings in WinTab pen support into C# applications. You can read more about C# (.NET) support on the Wintab Basics page, in the [Programming framework, SDK, languages](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics#prog-framewk-sdk-lang) section, and review the sample code which builds this dll in [Windows .NET - Getting Started](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/GETTING-STARTED.md).
+1. This sample code project comes with the WinTabDN.dll, which brings in WinTab pen support into C# applications. You can read more about C# (.NET) support on the Wintab Basics page, in the [Programming framework, SDK, languages](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-basics#prog-framewk-sdk-lang) section, and review the sample code which builds this dll in [Windows .NET - Getting Started](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/GETTING-STARTED.md).
 1. From the top menu, select Build > Build Solution.
 1. Be sure WacomMTDN_TestApp is set as the default start-up project.
 1. Once built, start the solution from Visual Studio Local Windows Debugger.
@@ -57,16 +57,16 @@ Once the driver has installed, and you have rebooted your system, check your tab
 	
 	* The "ESC" key will clear the window of all input.  
 	
-1. The options on the right allow you to control how touch is handled by the application and get information about attached devices. Information on what these different options do can be found on the Wacom Feel™  Multi-Touch Basics page, in the [Overview of a Multi-Touch Application section](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-basics#multi-touch-app-overview).  
+1. The options on the right allow you to control how touch is handled by the application and get information about attached devices. Information on what these different options do can be found on the Wacom Feel™  Multi-Touch Basics page, in the [Overview of a Multi-Touch Application section](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wfmt-basics#multi-touch-app-overview).  
 	
 ![Wacom Multi-Touch dot net Test Application](./Media/sc-gs-MTCDN-demo.png)
 
 ## See Also
-[Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-basics) - Details on how to configure and write Multi-Touch applications
+[Basics](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wfmt-basics) - Details on how to configure and write Multi-Touch applications
 
-[Reference](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-reference) - Complete Multi-Touch API details
+[Reference](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wfmt-reference) - Complete Multi-Touch API details
 
-[FAQs](https://developer-docs.wacom.com/wacom-device-api/docs/wfmt-faqs) - Multi-Touch programming tips
+[FAQs](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wfmt-faqs) - Multi-Touch programming tips
 
 
 ## Where to get help

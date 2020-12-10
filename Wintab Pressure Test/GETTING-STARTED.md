@@ -56,11 +56,11 @@ Max pressure circle scaled to shorter of height or width of application window:
 > NOTE: To only reflect the currently attached Wacom device, clear user preferences.
 
 ## See Also
-[Wintab - Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - How to configure and write Wintab applications  
+[Wintab - Basics](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-basics) - How to configure and write Wintab applications  
 
-[Wintab - Reference](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-reference) - Complete API details 
+[Wintab - Reference](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-reference) - Complete API details 
 
-[Wintab - FAQs](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-faqs) - Wintab programming tips  
+[Wintab - FAQs](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-faqs) - Wintab programming tips  
 
 ## Where to get help  
 If you have questions about the sample application or any of the setup process, please visit our Developer Support page at: https://developer.wacom.com/developer-dashboard/support.

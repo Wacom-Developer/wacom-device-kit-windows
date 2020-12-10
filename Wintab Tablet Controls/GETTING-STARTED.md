@@ -47,11 +47,11 @@ Once the driver has installed, and you have rebooted your system, check your tab
 ![Tablet controls](./Media/sc-gs-tabletcontrols.png)
 
 ## See Also
-[Wintab - Basics](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-basics) - How to configure and write Wintab applications  
+[Wintab - Basics](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-basics) - How to configure and write Wintab applications  
 
-[Wintab - Reference](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-reference) - Complete API details 
+[Wintab - Reference](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-reference) - Complete API details 
 
-[Wintab - FAQs](https://developer-docs.wacom.com/wacom-device-api/docs/wintab-faqs) - Wintab programming tips  
+[Wintab - FAQs](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-faqs) - Wintab programming tips  
 
 ## Where to get help
 If you have questions about the sample application or any of the setup processes, please visit our Developer Support page at: https://developer.wacom.com/developer-dashboard/support.
