@@ -27,7 +27,7 @@ THE SOFTWARE.
 ```
 
 ## Install the Wacom tablet driver and verify tablet operation
-In order to run the sample application, it is necessary to install the Wacom Tablet Driver, which installs the necessary runtime components that support the 	Multi-Touch and WinTab APIs. The driver can be found at: https://www.wacom.com/support/product-support/drivers.
+In order to run the sample application, it is necessary to install the Wacom Tablet Driver, which installs the necessary runtime components that support the Multi-Touch and WinTab APIs. The driver can be found at: https://www.wacom.com/support/product-support/drivers.
 
 Once the driver has installed, and you have rebooted your system, check your tablet driver installation by doing the following:
 
@@ -38,13 +38,13 @@ Once the driver has installed, and you have rebooted your system, check your tab
 
 ## Build/run the sample application
 
-1, Open the WacomMTDN.sln file in Visual Studio. The demo includes all SDK header files needed to build and communicate with the Multi-Touch API. Other SDK components necessary to run the demo are installed with the tablet driver.  
+1. Open the WacomMTDN.sln file in Visual Studio. The demo includes all SDK header files needed to build and communicate with the Multi-Touch API. Other SDK components necessary to run the demo are installed with the tablet driver.  
 
 2. There are two projects in the solution:
 	* WacomMTDN: This project builds the WacomMTDN.dll which is used to interface with native Wacom Multi-Touch library (installed with the Wacom Tablet Driver).
 	* WacomMTDN_TestApp: This is a test application which uses WacomMTDN.dll  
 	
-1. This sample code project comes with the WinTabDN.dll, which brings in WinTab pen support into C# applications. You can read more about C# (.NET) support on the Wintab Basics page, in the [Programming framework, SDK, languages](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-basics#prog-framewk-sdk-lang) section, and review the sample code which builds this dll in [Windows .NET - Getting Started](https://github.com/Wacom-Developer/wacom-device-kit-windows/blob/master/Wintab%20.Net/GETTING-STARTED.md).
+1. This sample code project comes with the WinTabDN.dll, which brings in WinTab pen support into C# applications. You can read more about C# (.NET) support on the Wintab Basics page, in the [Programming framework, SDK, languages](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-basics#prog-framewk-sdk-lang) section, and review the sample code which builds this dll in [Windows .NET - Getting Started](/Wintab%20.NET/GETTING-STARTED.md).
 1. From the top menu, select Build > Build Solution.
 1. Be sure WacomMTDN_TestApp is set as the default start-up project.
 1. Once built, start the solution from Visual Studio Local Windows Debugger.
