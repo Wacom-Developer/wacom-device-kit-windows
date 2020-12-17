@@ -13,7 +13,7 @@ This demo shows how an application can use the Multi-Touch API to:
 To run this application, a Wacom tablet driver must be installed and a touch-enabled device must be attached. Get the tablet driver that supports your device at: https://www.wacom.com/support/product-support/drivers.
 
 ## Application Details
-The application uses a managed C# wrapper library (WacomMTDN.dll) to communicate with the installed touch driver module, WacomMT.dll. The WacomMTDN source code is included as a project within the sample's solution. If the driver is not installed or is not communicating, the program will display an appropriate warning. Additionally, WintabDN.dll is included to add support for Wintab pen input. To learn more about, and view the source code for WintabDN.dll, see our [Wintab .NET sample code](https://github.com/Wacom-Developer/wacom-device-kit-windows).
+The application uses a managed C# wrapper library (WacomMTDN.dll) to communicate with the installed touch driver module, WacomMT.dll. The WacomMTDN source code is included as a project within the sample's solution. If the driver is not installed or is not communicating, the program will display an appropriate warning. Additionally, WintabDN.dll is included to add support for Wintab pen input. To learn more about, and view the source code for WintabDN.dll, see the Wintab .NET sample code [GETTING STARTED page](/Wintab%20.NET/GETTING-STARTED.md).
 
 The following image illustrates a simplified overview of the major  components:
 
