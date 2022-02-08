@@ -112,23 +112,22 @@ namespace WintabDN
 	[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
 	public class HCTX
 	{
-		[MarshalAs(UnmanagedType.U4)]
-		UInt32 value;
+		IntPtr value;
 
 		public HCTX(UInt32 value)
-		{ this.value = value; }
+		{ this.value = new IntPtr(value); }
 
 		public static implicit operator UInt32(HCTX hctx_I)
-		{ return hctx_I.value; }
+		{ return (UInt32) hctx_I.value.ToInt32(); }
 
 		public static implicit operator HCTX(UInt32 value)
 		{ return new HCTX(value); }
 
 		public static bool operator ==(HCTX hctx, UInt32 value)
-		{ return hctx.value == value; }
+		{ return (UInt32) hctx.value.ToInt32() == value; }
 
 		public static bool operator !=(HCTX hctx, UInt32 value)
-		{ return hctx.value != value; }
+		{ return (UInt32) hctx.value.ToInt32() != value; }
 
 		public override bool Equals(object obj)
 		{ return (HCTX)obj == this; }
