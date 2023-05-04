@@ -27,7 +27,7 @@ You can download the sample code and view the inline comments to find out detail
 
 [Reference](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wfmt-reference) - Complete Multi-Touch API details
 
-[FAQs](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wfmt-faqs) - Multi-Touch programming tips
+[FAQs](https://developer-support.wacom.com/hc/en-us/articles/12844682604567-Wacom-Feel-Multi-Touch) - Multi-Touch programming tips
 
 ## License
 This sample code is licensed under the MIT License: https://choosealicense.com/licenses/mit/.

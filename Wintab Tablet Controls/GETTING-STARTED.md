@@ -51,7 +51,7 @@ Once the driver has installed, and you have rebooted your system, check your tab
 
 [Wintab - Reference](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-reference) - Complete API details 
 
-[Wintab - FAQs](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-faqs) - Wintab programming tips  
+[Wintab - FAQs](https://developer-support.wacom.com/hc/en-us/articles/12844524637975-Wintab) - Wintab programming tips  
 
 ## Where to get help
 If you have questions about the sample application or any of the setup processes, please visit our Developer Support page at: https://developer.wacom.com/developer-dashboard/support.

@@ -61,7 +61,7 @@ Stylus in contact, nearly vertical, leaning toward upper right corner:
 
 [Wintab Reference](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-reference) - Complete API details
 
-[Wintab FAQs](https://developer-docs.wacom.com/intuos-cintiq-business-tablets/docs/wintab-faqs) - Wintab programming tips
+[Wintab FAQs](https://developer-support.wacom.com/hc/en-us/articles/12844524637975-Wintab) - Wintab programming tips
 
 
 Where to get help
