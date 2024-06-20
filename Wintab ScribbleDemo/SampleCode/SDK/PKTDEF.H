@@ -7,7 +7,7 @@
 		uses to specify what data to receive in a Wintab data packet
 
 	COPYRIGHT
-		This file is Copyright (c) Wacom Company, Ltd. 2020 All Rights Reserved
+		This file is Copyright (c) Wacom Company, Ltd. 2024 All Rights Reserved
 		with portions copyright 1991-1998 by LCS/Telegraphics.
 
 		The text and information contained in this file may be freely used,

@@ -6,7 +6,7 @@
 		Application resource defines.
 
 	COPYRIGHT
-		This file is Copyright (c) Wacom Company, Ltd. 2020 All Rights Reserved
+		This file is Copyright (c) Wacom Company, Ltd. 2024 All Rights Reserved
 		with portions copyright 1991-1998 by LCS/Telegraphics.
 
 		The text and information contained in this file may be freely used,
@@ -41,16 +41,16 @@ END
 // Dialog
 //
 
-ABOUTBOX DIALOGEX 22, 17, 161, 75
-STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
-CAPTION "About PressureTest"
-FONT 8, "MS Sans Serif", 0, 0, 0x0
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About ScribbleDemo"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CTEXT           "LCS/Telegraphics",-1,0,3,161,8
-    CTEXT           "Modified by WACOM Technologies, Inc.",-1,0,12,161,8
-    CTEXT           "PressureTest Application",-1,0,28,161,8
-    CTEXT           "Version 2.0.1",-1,0,41,161,8
-    DEFPUSHBUTTON   "OK",IDOK,65,57,32,14,WS_GROUP
+    CTEXT           "LCS/Telegraphics",-1,0,10,161,8
+    CTEXT           "Modified by WACOM Technologies, Inc.",-1,0,20,161,8
+    CTEXT           "ScribbleDemo Application",-1,0,30,161,8
+    CTEXT           "Version 2.0.3",-1,0,40,161,8
+    DEFPUSHBUTTON   "OK", IDOK, 60, 60, 50, 14, WS_GROUP
 END
 
 /////////////////////////////////////////////////////////////////////////////

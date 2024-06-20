@@ -9,7 +9,7 @@
 		Can be built for either Wintab system or digitizer contexts.
 
 	COPYRIGHT
-		This file is Copyright (c) Wacom Company, Ltd. 2020 All Rights Reserved
+		This file is Copyright (c) Wacom Company, Ltd. 2024 All Rights Reserved
 		with portions copyright 1991-1998 by LCS/Telegraphics.
 
 		The text and information contained in this file may be freely used,
@@ -42,7 +42,10 @@
 // Uncomment the following line if you want to trace context overlap messages.
 //#define TRACE_CTXOVERLAP
 
-// Uncomment the following line if you want to trace draw pen data.
+// Uncomment the following line if you want to trace raw pen data.
+//#define TRACE_RAWPENDATA
+
+// Uncomment the following line if you want to trace converted draw pen data.
 //#define TRACE_DRAWPENDATA
 #endif
 
@@ -61,7 +64,7 @@ bool g_useMouseMessages = false;
 // as the context of the tablet to be polled for demo purposes.
 // (Note that when relying on Wintab events, the tablet context comes along with
 // the WT_PACKET message, so this kind of thing is not needed.)
-HCTX g_hCtxUsedForPolling = NULL;
+HCTX g_hCtxUsedForPolling = nullptr;
 
 // This is the max number of Wintab data packets queried for at a time
 // when using the polling method of getting Wintab data.
@@ -73,7 +76,7 @@ bool g_penMovesSystemCursor = true;
 // Uncomment this line to draw a graphic showing mouse click point.
 //#define DRAW_CLICK_POINT
 
-HINSTANCE g_hInst = NULL;
+HINSTANCE g_hInst = nullptr;
 
 bool g_drawLines = true;
 bool g_pressure = true;
@@ -86,16 +89,25 @@ bool g_useActualDigitizerOutput = false;
 // Also assumes taskbar is hidden (but can fix later).
 bool g_kioskDisplay = false;
 
-HWND		g_mainWnd = 0;
-HDC		g_hdc = 0;
+HWND		g_mainWnd = nullptr;
+HDC		g_hdc = nullptr;
+HWND		g_hWndAbout = nullptr;
 
 HBRUSH g_hDownBrush = CreateSolidBrush(RGB(255, 0, 0));
 HBRUSH g_hUpBrush = CreateSolidBrush(RGB(0, 255, 0));
 
-double g_sysWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
-double g_sysHeight = GetSystemMetrics(SM_CYVIRTUALSCREEN);
-double g_sysOrigX = GetSystemMetrics(SM_XVIRTUALSCREEN);
-double g_sysOrigY = GetSystemMetrics(SM_YVIRTUALSCREEN);
+double g_sysWidth = 0;
+double g_sysHeight = 0;
+double g_sysOrigX = 0;
+double g_sysOrigY = 0;
+
+static HCTX g_hctx = nullptr;
+static HCTX g_hctxLast = nullptr;
+static double g_scaleWidth = 0.0;
+static double g_scaleHeight = 0.0;
+static RECT g_clientRect = { 0 };
+static RECT g_windowRect = { 0 };
+static MONITORINFO g_monInfo = { 0 };
 
 ///////////////////////////////////////////////////////////////////////////////
 // Hold tablet-specific properties used when responding to tablet data packets.
@@ -170,7 +182,7 @@ void PollForPenData(HCTX hCtx_I, HWND hWnd_I, POINT& ptOld_I, UINT& prsOld_I, PO
 				ptNew_O.y != ptOld_I.y ||
 				prsNew_O != prsOld_I) 
 		{
-			InvalidateRect(hWnd_I, NULL, false);
+			InvalidateRect(hWnd_I, nullptr, false);
 		}
 	}
 }
@@ -277,7 +289,7 @@ int PASCAL WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	/* Acquire and dispatch messages until a WM_QUIT message is received. */
 
-	while (GetMessage(&msg, NULL, 0, 0))
+	while (GetMessage(&msg, nullptr, 0, 0))
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
@@ -286,7 +298,7 @@ int PASCAL WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// Return Wintab resources.
 	Cleanup();
 
-	return (msg.wParam);
+	return static_cast<int>(msg.wParam);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -305,8 +317,8 @@ bool InitApplication(HINSTANCE hInstance)
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 	wc.hInstance = hInstance;
-	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wc.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
+	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)(COLOR_APPWORKSPACE + 1);
 	wc.lpszMenuName =  "ScribbleDemoMenu";
 	wc.lpszClassName = "ScribbleDemoWClass";
@@ -338,7 +350,7 @@ bool InitInstance(HINSTANCE hInstance, int nCmdShow)
 	}
 
 	/* check if WinTab available. */
-	if (!gpWTInfoA(0, 0, NULL)) 
+	if (!gpWTInfoA(0, 0, nullptr))
 	{
 		ShowError( "WinTab Services Not Available." );
 		return false;
@@ -362,10 +374,10 @@ bool InitInstance(HINSTANCE hInstance, int nCmdShow)
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
-		NULL,
-		NULL,
+		nullptr,
+		nullptr,
 		hInstance,
-		NULL
+		nullptr
 	);
 
 	/* If window could not be created, return "failure" */
@@ -585,13 +597,92 @@ void CloseTabletContexts(void)
 		HCTX hCtx = it->first;
 		WacomTrace("Closing context: 0x%X\n", hCtx);
 
-		gpWTClose(hCtx);
+		if (hCtx != nullptr)
+		{
+			gpWTClose(hCtx);
+		}
 	}
 
 	g_contextMap.clear();
 
 	gnOpenContexts = 0;
 	gnAttachedDevices = 0;
+
+	g_hctx = nullptr;
+	g_hctxLast = nullptr;
+	g_hCtxUsedForPolling = nullptr;
+	g_scaleWidth = 0.0;
+	g_scaleHeight = 0.0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+void UpdateWindowExtents(HWND hWnd)
+{
+	// Compute scaling factor from tablet to display.
+	if (g_contextMap.count(g_hctx) != 0)
+	{
+		TabletInfo info = g_contextMap[g_hctx];
+		if (g_contextMap[g_hctx].displayTablet)
+		{
+			if (g_kioskDisplay)
+			{
+				// Scale tablet to app window rect
+				::GetWindowRect(hWnd, &g_windowRect);
+				double winWidth = static_cast<double>(g_windowRect.right) - static_cast<double>(g_windowRect.left);
+				double winHeight = static_cast<double>(g_windowRect.bottom) - static_cast<double>(g_windowRect.top);
+				g_scaleWidth = winWidth / (double)info.tabletXExt;
+				g_scaleHeight = winHeight / (double)info.tabletYExt;
+			}
+			else
+			{
+				// Scale tablet to monitor
+				HMONITOR hMon = ::MonitorFromWindow(hWnd, MONITOR_DEFAULTTONEAREST);
+				g_monInfo = { 0 };
+				g_monInfo.cbSize = sizeof(MONITORINFO);
+				::GetMonitorInfo(hMon, &g_monInfo);
+				double monWidth = static_cast<double>(g_monInfo.rcMonitor.right) - static_cast<double>(g_monInfo.rcMonitor.left);
+				double monHeight = static_cast<double>(g_monInfo.rcMonitor.bottom) - static_cast<double>(g_monInfo.rcMonitor.top);
+				g_scaleWidth = monWidth / (double)info.tabletXExt;
+				g_scaleHeight = monHeight / (double)info.tabletYExt;
+
+				//WacomTrace("UpdateWindowExtents: mon: %f,%f, tabletExt: %f,%f\n", monWidth, monHeight, (double)info.tabletXExt, (double)info.tabletYExt);
+			}
+		}
+		else
+		{
+			// Scales tablet to entire desktop.
+			g_scaleWidth = (double)g_sysWidth / (double)info.tabletXExt;
+			g_scaleHeight = (double)g_sysHeight / (double)info.tabletYExt;
+		}
+
+		InvalidateRect(hWnd, nullptr, true);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+void UpdateSystemExtents()
+{
+	g_sysWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+	g_sysHeight = GetSystemMetrics(SM_CYVIRTUALSCREEN);
+	g_sysOrigX = GetSystemMetrics(SM_XVIRTUALSCREEN);
+	g_sysOrigY = GetSystemMetrics(SM_YVIRTUALSCREEN);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+bool HasAttachedDisplayTablet()
+{
+	for (std::map<HCTX, TabletInfo>::iterator it = g_contextMap.begin(); it != g_contextMap.end(); ++it)
+	{
+		if (it->second.displayTablet)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -605,17 +696,11 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 	static bool  bMouseDown, bMouseUp = false;
 	static UINT prsOld = 0;
 	static UINT prsNew = 0;
-	static HCTX hctx = NULL;
-	static HCTX hctxLast = NULL;
-	static double scaleWidth = 0.0;
-	static double scaleHeight = 0.0;
-	static RECT clientRect = { 0 };
-	static RECT windowRect = { 0 };
-	static MONITORINFO monInfo = { 0 };
+	static RECT g_clientRect = { 0 };
+	static MONITORINFO g_monInfo = { 0 };
 
-	DLGPROC lpProcAbout = NULL;
 	PAINTSTRUCT psPaint = {0};
-	HDC hDC = NULL;
+	HDC hDC = nullptr;
 	bool fHandled = true;
 	LRESULT lResult = 0L;
 
@@ -625,65 +710,31 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 	{
 		case WM_CREATE:
 		{
+			UpdateSystemExtents();
 
 			// Initialize a Wintab context for each connected tablet.
 			if (!OpenTabletContexts(hWnd))
 			{
 				ShowError("No tablets found.");
-				SendMessage(hWnd, WM_DESTROY, 0, 0L);
+				//SendMessage(hWnd, WM_DESTROY, 0, 0L);
 			}
+
+			break;
 		}
-		break;
 
 		case WM_MOVE:
 		case WM_SIZE:
 		{
-			// Compute scaling factor from tablet to display.
-			if (hctx != NULL)
-			{
-				TabletInfo info = g_contextMap[hctx];
-				if (g_contextMap[hctx].displayTablet)
-				{
-					if (g_kioskDisplay)
-					{
-						// Scale tablet to app window rect
-						::GetWindowRect(hWnd, &windowRect);
-						double winWidth = static_cast<double>(windowRect.right) - static_cast<double>(windowRect.left);
-						double winHeight = static_cast<double>(windowRect.bottom) - static_cast<double>(windowRect.top);
-						scaleWidth = winWidth / (double) info.tabletXExt;
-						scaleHeight = winHeight / (double) info.tabletYExt;
-					}
-					else
-					{
-						// Scale tablet to monitor
-						HMONITOR hMon = ::MonitorFromWindow(hWnd, MONITOR_DEFAULTTONEAREST);
-						monInfo = { 0 };
-						monInfo.cbSize = sizeof(MONITORINFO);
-						::GetMonitorInfo(hMon, &monInfo);
-						double monWidth = static_cast<double>(monInfo.rcMonitor.right) - static_cast<double>(monInfo.rcMonitor.left);
-						double monHeight = static_cast<double>(monInfo.rcMonitor.bottom) - static_cast<double>(monInfo.rcMonitor.top);
-						scaleWidth = monWidth / (double) info.tabletXExt;
-						scaleHeight = monHeight / (double) info.tabletYExt;
-					}
-				}
-				else
-				{
-					// Scales tablet to entire desktop.
-					scaleWidth = (double) g_sysWidth / (double) info.tabletXExt;
-					scaleHeight = (double) g_sysHeight / (double) info.tabletYExt;
-				}
-
-				InvalidateRect(hWnd, NULL, true);
-			}
+			UpdateWindowExtents(hWnd);
+			break;
 		}
-		break;
 
 		case WM_KEYDOWN:
-			if (wParam == VK_ESCAPE)
-			{
-				InvalidateRect(hWnd, NULL, true);
-			}
+		if (wParam == VK_ESCAPE)
+		{
+			InvalidateRect(hWnd, nullptr, true);
 			break;
+		}
 
 		case WM_COMMAND:
 		{
@@ -691,13 +742,13 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 			{
 				case IDM_ABOUT:
 				{
-					lpProcAbout = MakeProcInstance(reinterpret_cast<BOOL (__stdcall*)(HWND, unsigned int, WPARAM, LPARAM)>(About), g_hInst);
-
-					DialogBox(g_hInst, "AboutBox", hWnd, lpProcAbout);
-
-					FreeProcInstance(lpProcAbout);
+					if (!IsWindow(g_hWndAbout))
+					{
+						CreateDialog(g_hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+						ShowWindow(g_hWndAbout, SW_SHOW);
+					}
+					break;
 				}
-				break;
 
 				case IDM_LINES:
 				{
@@ -711,8 +762,8 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 						g_drawLines = bOn;
 						CheckMenuItem(menu, wmId, bOn ? MF_CHECKED : MF_UNCHECKED);
 					}
+					break;
 				}
-				break;
 
 				case IDM_PRESSURE:
 				{
@@ -726,8 +777,8 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 						g_pressure = bOn;
 						CheckMenuItem(menu, wmId, bOn ? MF_CHECKED : MF_UNCHECKED);
 					}
+					break;
 				}
-				break;
 
 				case IDM_OFFSETMODE:
 				{
@@ -741,21 +792,27 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 						g_offsetMode = bOn;
 						CheckMenuItem(menu, wmId, bOn ? MF_CHECKED : MF_UNCHECKED);
 					}
+					break;
 				}
-				break;
 
 				case IDM_CLEAR:
-					InvalidateRect(hWnd, NULL, true);
+				{
+					InvalidateRect(hWnd, nullptr, true);
 					break;
+				}
 
 				default:
+				{
 					fHandled = false;
 					break;
+				}
 			}
+
+			break;
 		}
-		break;
 
 		case WM_LBUTTONDOWN:
+		{
 			//WacomTrace("WM_LBUTTONDOWN\n");
 			bMouseDown = true;
 
@@ -765,12 +822,14 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 			}
 			else
 			{
-				InvalidateRect(hWnd, NULL, false);
+				InvalidateRect(hWnd, nullptr, false);
 			}
 
 			break;
+		}
 
 		case WM_LBUTTONUP:
+		{
 			//WacomTrace("WM_LBUTTONUP\n");
 			bMouseUp = true;
 
@@ -780,29 +839,37 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 			}
 			else
 			{
-				InvalidateRect(hWnd, NULL, false);
+				InvalidateRect(hWnd, nullptr, false);
 			}
+
 			break;
+		}
 
 		case WM_MOUSEMOVE:
-			//WacomTrace("WM_MOUSEMOVE\n");
-			if (g_useMouseMessages)
-			{
-				PollForPenData(g_hCtxUsedForPolling, hWnd, ptOld, prsOld, ptNew, prsNew);
-			}
+		//WacomTrace("WM_MOUSEMOVE\n");
+		if (g_useMouseMessages)
+		{
+			PollForPenData(g_hCtxUsedForPolling, hWnd, ptOld, prsOld, ptNew, prsNew);
 			break;
+		}
 
 		// Wintab message indicating new pen data available.
 		case WT_PACKET:
 		{
-			hctx = (HCTX)lParam;
+			if (g_contextMap.count((HCTX)lParam) == 0)
+			{
+				//WacomTrace("WT_PACKET: (HCTX)lParam: 0x%X not found in map\n", (HCTX)lParam);
+				break;
+			}
+
+			g_hctx = (HCTX)lParam;
 			PACKET pkt = {0};
 
 			// Query for the new pen data.
 			// Wintab X/Y data is in screen or tablet coordinates, depending on how
 			// the Wintab context was opened. These coordinates will have to
 			// be converted to client coordinates in the WM_PAINT handler.
-			if (gpWTPacket(hctx, wParam, &pkt))
+			if (gpWTPacket(g_hctx, static_cast<int>(wParam), &pkt))
 			{
 				if (g_useMouseMessages)
 				{
@@ -822,8 +889,8 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 				}
 
 #if defined(TRACE_PACKETDATA)
-				WacomTrace("WT_PACKET: hctx[0x%X], pkt: x,y,p,tp: %i,%i,%i,%i - timestamp: %i\n", 
-					hctx, pkt.pkX, pkt.pkY, pkt.pkNormalPressure, pkt.pkTangentPressure, pkt.pkTime);
+				WacomTrace("WT_PACKET: g_hctx[0x%X], pkt: x,y,p,tp: %i,%i,%i,%i - timestamp: %i\n", 
+					g_hctx, pkt.pkX, pkt.pkY, pkt.pkNormalPressure, pkt.pkTangentPressure, pkt.pkTime);
 #endif
 
 				ptNew.x = pkt.pkX;
@@ -831,57 +898,62 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 				prsNew = pkt.pkNormalPressure;
 
 				// WM_PAINT will use ptNew and prsNew to draw lines.
-				InvalidateRect(hWnd, NULL, false);
+				InvalidateRect(hWnd, nullptr, false);
 			}
-			else
-			{
-				WacomTrace("Oops - got pinged by an unknown context: 0x%X\n", hctx);
-			}
-		}
-		break;
 
-		// Wintab message indicatin tablet attach or detach.
+			break;
+		}
+
+		// Wintab message indicating tablet attach or detach.
 		case WT_INFOCHANGE:
 		{
 			int nAttachedDevices = 0;
 			gpWTInfoA(WTI_INTERFACE, IFC_NDEVICES, &nAttachedDevices);
 
-			WacomTrace("WT_INFOCHANGE detected; number of connected tablets is now: %i\n", nAttachedDevices);
+			WacomTrace("WT_INFOCHANGE detected; number of connected tablets is: %i\n", nAttachedDevices);
 
-			if (nAttachedDevices != gnAttachedDevices )
+			// close all current tablet contexts
+			CloseTabletContexts();
+
+			if (nAttachedDevices > 0)
 			{
-				// kill all current tablet contexts
-				CloseTabletContexts();
-
-				// Add some delay to give driver a chance to catch up in configuring
-				// to the current attached tablets.  
-				// 1 second seems to work - your mileage may vary...
-				::Sleep(1000);
-
 				// re-enumerate attached tablets
 				OpenTabletContexts(hWnd);
 			}
 
-			if ( gnAttachedDevices == 0 )
-			{
-				ShowError("No tablets found.");
-				SendMessage(hWnd, WM_DESTROY, 0, 0L);
-			}
+			break;
 		}
-		break;
+
+		case WM_DISPLAYCHANGE:
+		{
+			UpdateSystemExtents();
+			CloseTabletContexts();
+
+			// re-enumerate attached tablets
+			// Possibly redundant with WT_INFOCHANGE re-enumerate.
+			OpenTabletContexts(hWnd);
+
+			break;
+		}
 
 		// WIntab message indicating pen came into or went out of proximity to tablet surface.
 		case WT_PROXIMITY:
 		{
-			hctx = (HCTX)wParam;
+			if (g_contextMap.count((HCTX)lParam) == 0)
+			{
+				//WacomTrace("WT_PACKET: (HCTX)lParam: 0x%X not found in map\n", (HCTX)lParam);
+				break;
+			}
+
+			g_hctx = (HCTX)lParam;
 
 			bool entering = (HIWORD(lParam) != 0);
 			TabletInfo info = {0};
 			std::stringstream szTitle;	szTitle.flush();
 
-			if ( g_contextMap.count(hctx) > 0 )
+			if ( g_contextMap.count(g_hctx) > 0 )
 			{
-				info = g_contextMap[hctx];
+				info = g_contextMap[g_hctx];
 
 				if ( g_openSystemContext )
 				{
@@ -895,13 +967,14 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 			}
 			else
 			{
-				WacomTrace("Oops - couldn't find context: 0x%X\n", hctx);
-				szTitle << "ERROR: couldn't find tablet context: " << hctx;
+				WacomTrace("Oops - couldn't find context: 0x%X\n", g_hctx);
+				szTitle << "ERROR: couldn't find tablet context: " << g_hctx;
 			}
 
 			SetTitleBarText(hWnd, szTitle.str().c_str());
+
+			break;
 		}
-		break;
 
 		// Wintab message indicating app Wintab context ordering changed.
 		// Define DO_CTXOVERLAP handling for WT_CTXOVERLAP if you want the app to 
@@ -925,18 +998,19 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 			{
 				//Force context to always be on top so that it will
 				//get the data, even if out of focus.
-				gpWTOverlap(hctx, true);
+				gpWTOverlap(g_hctx, true);
 			}
+
+			break;
 		}
-		break;
 #endif // DO_CTXOVERLAP
 
 		case WM_DESTROY:
 		{
 			CloseTabletContexts();
 			PostQuitMessage(0);
+			break;
 		}
-		break;
 
 		// Windows Paint message used to draw captured pen data.
 		case WM_PAINT:
@@ -948,8 +1022,8 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 				{
 					HGDIOBJ original = SelectObject(hDC, GetStockObject(DC_PEN));
 
-					int penWidth = (int) (1 + std::floor(10 * (double) prsNew / (double) g_contextMap[hctx].maxPressure));
-					COLORREF penColor = g_contextMap[hctx].penColor;
+					int penWidth = (int) (1 + std::floor(10 * (double) prsNew / (double) g_contextMap[g_hctx].maxPressure));
+					COLORREF penColor = g_contextMap[g_hctx].penColor;
 
 					if (!g_pressure)
 					{
@@ -962,7 +1036,9 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 					POINT oldPoint = { ptOld.x, ptOld.y };
 					POINT newPoint = { ptNew.x, ptNew.y };
 
-					//WacomTrace("DRAWING: old: [%i,%i], new: [%i,%i], prsNew: %i\n", oldPoint.x, oldPoint.y, newPoint.x, newPoint.y, prsNew);
+#if defined(TRACE_RAWPENDATA)
+					WacomTrace("RAWPENDATA: old: [%i,%i], new: [%i,%i], prsNew: %i, penWidth: %i\n", oldPoint.x, oldPoint.y, newPoint.x, newPoint.y, prsNew, penWidth);
+#endif
 
 					//WacomTrace("old: [%i,%i], new: [%i,%i], penWidth: %i %s\n", 
 					//	oldPoint.x, oldPoint.y, newPoint.x, newPoint.y, penWidth,
@@ -971,6 +1047,7 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 					if (g_openSystemContext)
 					{
 						// Convert system pixel coordinates to client rectangle (pixels).
+						// Wintab has done all the heavy lifting to produce screen coordinates - just convert to client window coordinates.
 						ScreenToClient(hWnd, &oldPoint);
 						ScreenToClient(hWnd, &newPoint);
 					}
@@ -980,36 +1057,36 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 						// Note that this will be affected by tablet to display mapping.
 
 						// If scale factors not computed yet, force that to happen in WM_SIZE handler.
-						if (scaleWidth == 0.0)
+						if (g_scaleWidth == 0.0)
 						{
 							SendMessage(hWnd, WM_SIZE, 0, 0);
 							break;
 						}
 
 						// Convert to pixels
-						if (g_useActualDigitizerOutput && g_contextMap[hctx].displayTablet)
+						if (g_useActualDigitizerOutput && g_contextMap[g_hctx].displayTablet)
 						{
 							if (g_kioskDisplay)
 							{
 								// Map tablet point to app window rect
-								oldPoint.x = (LONG) ((double) oldPoint.x * scaleWidth); oldPoint.y = (LONG) ((double) oldPoint.y * scaleHeight);
-								newPoint.x = (LONG) ((double) newPoint.x * scaleWidth); newPoint.y = (LONG) ((double) newPoint.y * scaleHeight);
-								oldPoint.x += windowRect.left; oldPoint.y += windowRect.top;
-								newPoint.x += windowRect.left; newPoint.y += windowRect.top;
+								oldPoint.x = (LONG) ((double) oldPoint.x * g_scaleWidth); oldPoint.y = (LONG) ((double) oldPoint.y * g_scaleHeight);
+								newPoint.x = (LONG) ((double) newPoint.x * g_scaleWidth); newPoint.y = (LONG) ((double) newPoint.y * g_scaleHeight);
+								oldPoint.x += g_windowRect.left; oldPoint.y += g_windowRect.top;
+								newPoint.x += g_windowRect.left; newPoint.y += g_windowRect.top;
 							}
 							else
 							{
 								// Map tablet point to monitor
-								oldPoint.x = (LONG) ((double) oldPoint.x * scaleWidth); oldPoint.y = (LONG) ((double) oldPoint.y * scaleHeight);
-								newPoint.x = (LONG) ((double) newPoint.x * scaleWidth); newPoint.y = (LONG) ((double) newPoint.y * scaleHeight);
-								oldPoint.x += monInfo.rcMonitor.left; oldPoint.y += monInfo.rcMonitor.top;
-								newPoint.x += monInfo.rcMonitor.left; newPoint.y += monInfo.rcMonitor.top;
+								oldPoint.x = (LONG) ((double) oldPoint.x * g_scaleWidth); oldPoint.y = (LONG) ((double) oldPoint.y * g_scaleHeight);
+								newPoint.x = (LONG) ((double) newPoint.x * g_scaleWidth); newPoint.y = (LONG) ((double) newPoint.y * g_scaleHeight);
+								oldPoint.x += g_monInfo.rcMonitor.left; oldPoint.y += g_monInfo.rcMonitor.top;
+								newPoint.x += g_monInfo.rcMonitor.left; newPoint.y += g_monInfo.rcMonitor.top;
 							}
 						}
 						else
 						{
 							// Map tablet point to screen space
-							TabletInfo info = g_contextMap[hctx];
+							TabletInfo info = g_contextMap[g_hctx];
 
 							oldPoint.x = (LONG)g_sysOrigX + (LONG)(g_sysWidth * ((double) oldPoint.x / (double) info.tabletXExt));
 							oldPoint.y = (LONG)g_sysOrigY + (LONG) (g_sysHeight * ((double) oldPoint.y / (double) info.tabletYExt));
@@ -1033,21 +1110,21 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 					{
 						if (g_offsetMode)
 						{
-							MoveToEx(hDC, newPoint.x, newPoint.y + 50, NULL);
+							MoveToEx(hDC, newPoint.x, newPoint.y + 50, nullptr);
 							LineTo(hDC, newPoint.x, newPoint.y + 50);
 						}
 
-						MoveToEx(hDC, oldPoint.x, oldPoint.y, NULL);
+						MoveToEx(hDC, oldPoint.x, oldPoint.y, nullptr);
 					}
 					else
 					{
 						if (g_offsetMode)
 						{
-							MoveToEx(hDC, oldPoint.x, oldPoint.y + 50, NULL);
+							MoveToEx(hDC, oldPoint.x, oldPoint.y + 50, nullptr);
 							LineTo(hDC, newPoint.x, newPoint.y + 50);
 						}
 
-						MoveToEx(hDC, newPoint.x, newPoint.y, NULL);
+						MoveToEx(hDC, newPoint.x, newPoint.y, nullptr);
 					}
 
 					LineTo(hDC, newPoint.x, newPoint.y);
@@ -1082,15 +1159,15 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 				ptOld = ptNew;
 				prsOld = prsNew;
 			}
-		}
-		break;
 
+			break;
+		}
 
 		default:
 		{
 			fHandled = false;
+			break;
 		}
-		break;
 	}
 
 	if (fHandled)
@@ -1105,24 +1182,34 @@ LRESULT FAR PASCAL MainWndProc(HWND hWnd, unsigned message ,WPARAM wParam, LPARA
 
 ///////////////////////////////////////////////////////////////////////////////
 
-bool FAR PASCAL About(HWND hDlg, unsigned message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK About(HWND hDlg, unsigned message, WPARAM wParam, LPARAM lParam)
 {
-	switch (message) {
+	UNREFERENCED_PARAMETER(lParam);
+
+	switch (message) 
+	{
 		case WM_INITDIALOG:
-			return true;
+		{
+			g_hWndAbout = hDlg;
+			return (INT_PTR)TRUE;
+		}
 
 		case WM_COMMAND:
+		{
 			if (GET_WM_COMMAND_ID(wParam, lParam) == IDOK
-					|| GET_WM_COMMAND_ID(wParam, lParam) == IDCANCEL) {
-				EndDialog(hDlg, true);
-				return true;
+				|| GET_WM_COMMAND_ID(wParam, lParam) == IDCANCEL) 
+			{
+				DestroyWindow(hDlg);
+				g_hWndAbout = nullptr;
+				return (INT_PTR)TRUE;
 			}
 			break;
+		}
 
 		default:
 			break;
 	}
-	return false;
+	return (INT_PTR)FALSE;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
