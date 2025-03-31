@@ -45,10 +45,6 @@
 #define PACKETMODE	PK_BUTTONS
 #include "pktdef.h"
 
-// Small factor to render display tablet finger circles.
-// to pixels assuming .27 pixel size. Sould use system api to get this value.
-#define	DISPLAY_TAB_DRAW_SIZE_FACTOR		0.27f
-
 ///////////////////////////////////////////////////////////////////////////////
 // Types
 
@@ -1077,6 +1073,9 @@ void DrawFingerData(int count, WacomMTFinger *fingers, int device)
 	{
 		EnterCriticalSection(&g_graphicsCriticalSection);
 
+		float horizontalPixelPitch = g_caps[device].PhysicalSizeX / g_caps[device].LogicalWidth;
+		float verticalPixelPitch = g_caps[device].PhysicalSizeY / g_caps[device].LogicalHeight;
+
 		for (int index = 0; index < count; index++)
 		{
 			DebugTrace("TC[%i], confidence: %i\n", fingers[index].FingerID, fingers[index].Confidence);
@@ -1129,11 +1128,11 @@ void DrawFingerData(int count, WacomMTFinger *fingers, int device)
 					}
 					else //must be Cintiq so width already in pixels
 					{
-						widthMM = static_cast<double>(fingers[index].Width) * DISPLAY_TAB_DRAW_SIZE_FACTOR; //pixel pitch of Cintiq 24 HD
+						widthMM = static_cast<double>(fingers[index].Width) * horizontalPixelPitch;
 					}
 				}
 
-				int contactWidthOffset = static_cast<int>(widthMM / DISPLAY_TAB_DRAW_SIZE_FACTOR / 2);
+				int contactWidthOffset = static_cast<int>(widthMM / horizontalPixelPitch / 2);
 
 				double heightMM = 0.;
 				if (fingers[index].Height > 0)
@@ -1146,10 +1145,10 @@ void DrawFingerData(int count, WacomMTFinger *fingers, int device)
 					}
 					else //must be Cintiq so height already in pixels
 					{
-						heightMM = static_cast<double>(fingers[index].Height) * DISPLAY_TAB_DRAW_SIZE_FACTOR; //pixel pitch of Cintiq 24 HD
+						heightMM = static_cast<double>(fingers[index].Height) * verticalPixelPitch; //pixel pitch of Cintiq 24 HD
 					}
 				}
-				int contactHeightOffset = static_cast<int>(heightMM / DISPLAY_TAB_DRAW_SIZE_FACTOR / 2);
+				int contactHeightOffset = static_cast<int>(heightMM / verticalPixelPitch / 2);
 
 				DebugTrace("width, height (mm): %3.3f,%3.3f\n", widthMM, heightMM);
 
