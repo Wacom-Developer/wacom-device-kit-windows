@@ -5,7 +5,7 @@
 The text and information contained in this file may be freely used,
 copied, or distributed without compensation or licensing restrictions.
 
-This file is copyright 1998-2008 by Wacom Technology
+This file is Copyright (c) Wacom Company, Ltd. 2010 All Rights Reserved
 with portions copyright 1991-1998 by LCS/Telegraphics.
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
@@ -256,6 +256,8 @@ typedef struct __TAGE {
 #undef __IFX3
 #undef __SFX2
 #undef __SFX3
+
+#pragma pack (8)
 
 #ifdef __cplusplus
 }

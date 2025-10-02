@@ -260,3 +260,5 @@ typedef struct __TAGE {
 #ifdef __cplusplus
 }
 #endif	/* __cplusplus */
+
+#pragma pack (8)

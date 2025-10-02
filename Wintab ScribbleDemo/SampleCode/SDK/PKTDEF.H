@@ -1,20 +1,13 @@
-/*----------------------------------------------------------------------------s
-	NAME
-		PKTDEF.H
+/* -------------------------------- pktdef.h -------------------------------- */
+/* Combined 16 & 32-bit version. */
 
-	PURPOSE
-		Used to help construct a Wintab PACKETDATA definition the application 
-		uses to specify what data to receive in a Wintab data packet
+/*------------------------------------------------------------------------------
+The text and information contained in this file may be freely used,
+copied, or distributed without compensation or licensing restrictions.
 
-	COPYRIGHT
-		This file is Copyright (c) Wacom Company, Ltd. 2024 All Rights Reserved
-		with portions copyright 1991-1998 by LCS/Telegraphics.
-
-		The text and information contained in this file may be freely used,
-		copied, or distributed without compensation or licensing restrictions.
----------------------------------------------------------------------------- */
-#pragma once
-
+This file is Copyright (c) Wacom Company, Ltd. 2010 All Rights Reserved
+with portions copyright 1991-1998 by LCS/Telegraphics.
+------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 
 How to use pktdef.h:
@@ -267,3 +260,5 @@ typedef struct __TAGE {
 #ifdef __cplusplus
 }
 #endif	/* __cplusplus */
+
+#pragma pack (8)
