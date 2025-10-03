@@ -5,7 +5,7 @@ This application is currently at version 5.1.1
 
 ## History  
 
-* Release 5.1.1 2 October 2025
+* Release 5.1.1 3 October 2025
 	* Added x64 configurations
  * Release 5.1.0 7 April 2025
 	* Updated for release to Github
