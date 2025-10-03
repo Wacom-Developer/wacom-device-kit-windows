@@ -1,13 +1,15 @@
 # Release
 
 ## Version
-This application is currently at version 2.0.0
+This application is currently at version 2.0.1
 
 ## Wacom Tablet Driver Compatibility
 TabletControlsSample, which uses the Wintab API, is compatible with the latest Wacom tablet drivers.
 
 # History
-* Release 2.0.0 22 May 2020
+* Release 2.0.1 3 October 2025
+	* Added x64 configurations
+ * Release 2.0.0 22 May 2020
 	* Updated for release to Github
 * Releases prior to 2.0.0 (various dates)
 	* Unversioned maintenance releases
