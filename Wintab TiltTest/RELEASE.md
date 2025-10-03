@@ -1,10 +1,12 @@
 # Release
 
 ## Version
-This app is currently at version 2.0.0
+This app is currently at version 3.0.1
 
 ## History
-* Release 3.0.0 30 Oct 2020
+* Release 3.0.1 3 October 2025
+	* Added x64 configurations
+ * Release 3.0.0 30 Oct 2020
 	* Updated for release to Github
 * Releases prior to 3.0.0 (various dates)
 	* Un-versioned maintenance releases
