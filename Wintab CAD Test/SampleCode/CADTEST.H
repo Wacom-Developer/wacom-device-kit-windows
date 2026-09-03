@@ -17,11 +17,6 @@
 ---------------------------------------------------------------------------- */
 #pragma once
 
-#include "wintab.h"
-#define PACKETDATA	(PK_X | PK_Y | PK_BUTTONS)
-#define PACKETMODE	0
-#include "pktdef.h"
-
 //////////////////////////////////////////////////////////////////////////////
 
 #define IDM_FILE	0

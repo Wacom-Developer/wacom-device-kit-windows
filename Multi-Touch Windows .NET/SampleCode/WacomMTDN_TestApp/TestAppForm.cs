@@ -1696,6 +1696,9 @@ namespace WacomMTTestApp
 					m_graphics.Dispose();
 					m_graphics = null;
 				}
+
+				CloseCurrentContext();
+				CWintabFuncs.WacomCleanup();
 			}
 			catch (Exception ex)
 			{

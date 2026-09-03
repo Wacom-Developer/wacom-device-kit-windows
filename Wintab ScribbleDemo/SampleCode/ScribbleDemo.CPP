@@ -1219,7 +1219,7 @@ INT_PTR CALLBACK About(HWND hDlg, unsigned message, WPARAM wParam, LPARAM lParam
 void Cleanup( void )
 {
 	WACOM_TRACE( "Cleanup()\n" );
-	UnloadWintab( );
+	UnloadWintab();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

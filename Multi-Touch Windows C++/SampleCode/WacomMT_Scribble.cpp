@@ -26,7 +26,7 @@
 #include <crtdbg.h>
 
 #include "WacomMultiTouch.h"
-#include "WintabUtils.h"
+#include "Utils.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Defines
@@ -38,6 +38,8 @@
 
 // Graphics HPEN objects
 #define NUM_HPENS		10
+
+char* gpszProgramName = "WacomMT_Scribble";
 
 ///////////////////////////////////////////////////////////////////////////////
 // Wintab support headers
@@ -645,11 +647,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			if (lParam)
 			{
-				DebugTrace("WM_SETTINGCHANGE %i, %S\n", wParam, lParam);
+				WacomTrace("WM_SETTINGCHANGE %i, %S\n", wParam, lParam);
 			}
 			else
 			{
-				DebugTrace("WM_SETTINGCHANGE %i, NULL\n", wParam);
+				WacomTrace("WM_SETTINGCHANGE %i, NULL\n", wParam);
 			}
 			break;
 		}
@@ -735,7 +737,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				if ((ptNew.x != ptOld.x) || (ptNew.y != ptOld.y))
 				{
 					bool bMoveToPoint = ((prsOld == 0) && (prsNew > 0));
-					DebugTrace("prsOld: %i, prsNew: %i, ptNew: [%i,%i], ptOld: [%i,%i], moveToPoint: %s\n",
+					WacomTrace("prsOld: %i, prsNew: %i, ptNew: [%i,%i], ptOld: [%i,%i], moveToPoint: %s\n",
 						prsOld, prsNew,
 						ptNew.x, ptNew.y,
 						ptOld.x, ptOld.y,
@@ -1078,7 +1080,7 @@ void DrawFingerData(int count, WacomMTFinger *fingers, int device)
 
 		for (int index = 0; index < count; index++)
 		{
-			DebugTrace("TC[%i], confidence: %i\n", fingers[index].FingerID, fingers[index].Confidence);
+			WacomTrace("TC[%i], confidence: %i\n", fingers[index].FingerID, fingers[index].Confidence);
 
 			if (!g_fingerHPenMap.count(fingers[index].FingerID))
 			{
@@ -1150,7 +1152,7 @@ void DrawFingerData(int count, WacomMTFinger *fingers, int device)
 				}
 				int contactHeightOffset = static_cast<int>(heightMM / verticalPixelPitch / 2);
 
-				DebugTrace("width, height (mm): %3.3f,%3.3f\n", widthMM, heightMM);
+				WacomTrace("width, height (mm): %3.3f,%3.3f\n", widthMM, heightMM);
 
 				// Draw a larger ellipse around essentially a dot.
 				// Fill in any con-confident contacts.
@@ -1431,7 +1433,7 @@ HCTX InitWintabAPI(HWND hwnd_I)
 	g_maxPressure = Pressure.axMax;
 
 	// open the region
-	return gpWTOpenA(hwnd_I, (LPLOGCONTEXT)&logContext, TRUE);
+	return gpWTOpenA(hwnd_I, &logContext, TRUE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1513,18 +1515,18 @@ void DrawPenData(POINT point_I, UINT pressure_I, bool bMoveToPoint_I)
 		// Convert from screen to client coordinates to render.
 		// This will let us put the app window anywhere on the desktop.
 		::ScreenToClient(g_mainWnd, &ptNew);
-		DebugTrace("\tX:%ld  Y:%ld\n", ptNew.x, ptNew.y);
+		WacomTrace("\tX:%ld  Y:%ld\n", ptNew.x, ptNew.y);
 
 		// Move to a starting point if so directed.
 		// Prevents streaks from last draw point or edge of client.
 		if (bMoveToPoint_I)
 		{
-			DebugTrace("MoveTo: %i, %i\n", ptNew.x, ptNew.y);
+			WacomTrace("MoveTo: %i, %i\n", ptNew.x, ptNew.y);
 			MoveToEx(g_hdc, ptNew.x, ptNew.y, NULL);
 		}
 		else
 		{
-			DebugTrace("LineTo: %i, %i\n", ptNew.x, ptNew.y);
+			WacomTrace("LineTo: %i, %i\n", ptNew.x, ptNew.y);
 			LineTo(g_hdc, ptNew.x, ptNew.y);
 		}
 	}
@@ -1590,7 +1592,7 @@ void DumpCaps(bool showMessageBox_I)
 		msg << "\tCapabilityFlags: " << std::hex << static_cast<int>(g_caps[idx].CapabilityFlags) << "\n\n";
 	}
 
-	DebugTrace("%s\n", msg.str().c_str());
+	WacomTrace("%s\n", msg.str().c_str());
 
 	if (showMessageBox_I)
 	{

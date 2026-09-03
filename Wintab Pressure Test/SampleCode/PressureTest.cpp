@@ -15,11 +15,11 @@
 #define GET_X_LPARAM(lp)                        ((int)(short)LOWORD(lp))
 #define GET_Y_LPARAM(lp)                        ((int)(short)HIWORD(lp))
 
-#include <msgpack.h>
-#include <wintab.h>
+#include "msgpack.h"
+#include "wintab.h"
 #define PACKETDATA	(PK_X | PK_Y | PK_BUTTONS | PK_NORMAL_PRESSURE)
 #define PACKETMODE	PK_BUTTONS
-#include <pktdef.h>
+#include "pktdef.h"
 #include "Utils.h"
 
 #include "PressureTest.h"

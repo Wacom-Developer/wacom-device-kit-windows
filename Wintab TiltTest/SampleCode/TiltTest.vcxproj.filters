@@ -36,16 +36,16 @@
     <ClInclude Include="TiltTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utils.h">
+    <ClInclude Include="..\..\WintabSDK\MSGPACK.H">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Wintab\WINTAB.H">
+    <ClInclude Include="..\..\WintabSDK\PKTDEF.H">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Wintab\MSGPACK.H">
+    <ClInclude Include="..\..\WintabSDK\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Wintab\PKTDEF.H">
+    <ClInclude Include="..\..\WintabSDK\WINTAB.H">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,7 +56,7 @@
     <ClCompile Include="TiltTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
+    <ClCompile Include="..\..\WintabSDK\Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

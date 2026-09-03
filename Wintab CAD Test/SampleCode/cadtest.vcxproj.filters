@@ -3,15 +3,15 @@
   <ItemGroup>
     <ClCompile Include="CadTest.cpp" />
     <ClCompile Include="Rule.cpp" />
-    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="..\..\WintabSDK\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rule.h" />
-    <ClInclude Include="Utils.h" />
     <ClInclude Include="CadTest.h" />
-    <ClInclude Include="MSGPACK.H" />
-    <ClInclude Include="PKTDEF.H" />
-    <ClInclude Include="WINTAB.H" />
+    <ClInclude Include="..\..\WintabSDK\MSGPACK.H" />
+    <ClInclude Include="..\..\WintabSDK\PKTDEF.H" />
+    <ClInclude Include="..\..\WintabSDK\Utils.h" />
+    <ClInclude Include="..\..\WintabSDK\WINTAB.H" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CADTEST.RC" />

@@ -12,17 +12,17 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8AF02DA7-DF7E-4AA3-81A8-FC9F0EA44AFE}</ProjectGuid>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -74,6 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\..\WintabSDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -120,6 +121,7 @@
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\..\WintabSDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -141,17 +143,17 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\WintabSDK\Utils.cpp" />
     <ClCompile Include="CadTest.cpp" />
     <ClCompile Include="Rule.cpp" />
-    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\WintabSDK\MSGPACK.H" />
+    <ClInclude Include="..\..\WintabSDK\PKTDEF.H" />
+    <ClInclude Include="..\..\WintabSDK\Utils.h" />
+    <ClInclude Include="..\..\WintabSDK\WINTAB.H" />
     <ClInclude Include="CadTest.h" />
-    <ClInclude Include="MSGPACK.H" />
-    <ClInclude Include="PKTDEF.H" />
     <ClInclude Include="Rule.h" />
-    <ClInclude Include="Utils.h" />
-    <ClInclude Include="WINTAB.H" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CADTEST.RC">

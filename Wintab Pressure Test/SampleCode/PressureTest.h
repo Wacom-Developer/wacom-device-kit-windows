@@ -5,7 +5,7 @@
 //
 //	COPYRIGHT
 //		Copyright (C) 1998  LCS/Telegraphics
-//		Copyright (c) 2014-2020 Wacom Co., Ltd.
+//		Copyright (c) 2014-2026 Wacom Co., Ltd.
 //		All rights reserved.
 //
 //	AUTHORS

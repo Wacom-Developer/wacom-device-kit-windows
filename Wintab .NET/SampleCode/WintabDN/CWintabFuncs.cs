@@ -438,5 +438,12 @@ namespace WintabDN
 		/// <returns></returns>
 		[DllImport("Wintab32.dll", CharSet = CharSet.Auto)]
 		public static extern bool WTExtSet(P_HCTX hctx_I, UInt32 extTag_I, IntPtr extData_I);
+
+		/// <summary>
+		/// This function should be called on a program's closing to clean up Wintab memory.
+		/// </summary>
+		/// <returns>Bool indicating success or failure.</returns>
+		[DllImport("Wintab32.dll", CharSet = CharSet.Auto)]
+		public static extern bool WacomCleanup();
 	}
 }

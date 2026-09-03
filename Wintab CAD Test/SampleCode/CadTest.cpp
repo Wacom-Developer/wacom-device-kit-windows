@@ -23,9 +23,15 @@
 #include <string.h>
 #include <windows.h>
 #include "winuser.h"
-#include <commdlg.h>
 #include "msgpack.h"
+#include "wintab.h"
+// PACKETDATA is a macro specifying what data the driver should return in pen data packets
+#define PACKETDATA	(PK_X | PK_Y | PK_BUTTONS)
+#define PACKETMODE	0
+#include "pktdef.h"
 #include "Utils.h"
+
+#include <commdlg.h>
 #include "cadtest.h"
 #include "rule.h"
 
@@ -133,7 +139,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	hInst = hInstance;
 
-	if ( !LoadWintab( ) )
+	if ( !LoadWintab() )
 	{
 		ShowError( "Wintab not available" );
 		return FALSE;

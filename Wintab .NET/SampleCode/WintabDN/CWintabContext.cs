@@ -240,7 +240,6 @@ namespace WintabDN
 			{
 				MessageBox.Show("FAILED CloseContext: " + ex.ToString());
 			}
-
 			return status;
 		}
 
